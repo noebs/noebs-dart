@@ -110,7 +110,7 @@ class Error implements Response {
 /// Errors such as response error and etc.
 class PaymentError implements Response {
   String message;
-  String code;
+  int code;
 
   PaymentError({
     this.message,
@@ -127,7 +127,7 @@ class PaymentError implements Response {
   }
 
   factory PaymentError.fromJson(String source) =>
-      PaymentError.fromMap(json.decode(source));
+      PaymentError.fromMap(json.decode(source)["details"]);
 
   @override
   bool IsError() {
@@ -150,39 +150,41 @@ class PaymentError implements Response {
   @override
   String getResponseCode() {
     // TODO: implement getResponseCode
-    return this.code;
+    return this.code.toString();
   }
 
   @override
   String getResponseMessage() {
     // TODO: implement getResponseMessage
-    return this.code;
+    return this.message;
   }
 }
 
 /// [Successful] is noebs successful response
 class Successful implements Response {
   String message;
-  String code;
+  int code;
   String pubKey;
+  double balance;
 
-  Successful({
-    this.message,
-    this.code,
-    this.pubKey,
-  });
+  Successful({this.message, this.code, this.pubKey, this.balance});
 
   factory Successful.fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
+    double available = 0;
 
+    if (map.containsKey("balance")) {
+      available = map["balance"]["available"];
+    }
     return Successful(
         message: map['responseMessage'],
         code: map['responseCode'],
-        pubKey: map["pubKeyValue"] ?? "");
+        pubKey: map["pubKeyValue"] ?? "",
+        balance: available);
   }
 
   factory Successful.fromJson(String source) =>
-      Successful.fromMap(json.decode(source));
+      Successful.fromMap(json.decode(source)["ebs_response"]);
 
   @override
   bool IsError() {
@@ -205,7 +207,7 @@ class Successful implements Response {
   @override
   String getResponseCode() {
     // TODO: implement getResponseCode
-    return code;
+    return code.toString();
   }
 
   @override
