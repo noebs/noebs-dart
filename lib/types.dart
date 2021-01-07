@@ -57,7 +57,7 @@ class Payment {
 /// [Error] represents any generic noebs error
 class Error implements Response {
   String message;
-  String code;
+  int code;
 
   Error({
     this.message,
@@ -94,15 +94,15 @@ class Error implements Response {
   }
 
   @override
-  String getResponseCode() {
+  int getResponseCode() {
     // TODO: implement getResponseCode
-    return this.message;
+    return this.code;
   }
 
   @override
   String getResponseMessage() {
     // TODO: implement getResponseMessage
-    return this.code;
+    return this.message;
   }
 }
 
@@ -148,9 +148,9 @@ class PaymentError implements Response {
   }
 
   @override
-  String getResponseCode() {
+  int getResponseCode() {
     // TODO: implement getResponseCode
-    return this.code.toString();
+    return this.code;
   }
 
   @override
@@ -205,9 +205,9 @@ class Successful implements Response {
   }
 
   @override
-  String getResponseCode() {
+  int getResponseCode() {
     // TODO: implement getResponseCode
-    return code.toString();
+    return code;
   }
 
   @override
@@ -217,10 +217,16 @@ class Successful implements Response {
   }
 }
 
+/// [Response] is the base interface for all noebs response messages
+/// [Response.IsSuccessful] and [Response.IsError] can be used
+/// to check for successful responses and failure responses accordingly.
+/// [Response.getResponseMessage] is used to get user friendly response messages
+/// [Response.getResponseCode] is for a technical info about the response.
+/// means successful transactions.
 abstract class Response {
   bool IsSuccessfull();
   bool IsError();
   bool IsPaymentError();
   String getResponseMessage();
-  String getResponseCode();
+  int getResponseCode();
 }
