@@ -55,9 +55,9 @@ main() {
               200));
       final payment = Noebs(
           apiKey: "1233232",
-          pan: "9222081700176714465",
-          ipin: "0009",
-          expDate: "2203",
+          pan: "912341234421234112",
+          ipin: "1234",
+          expDate: "2402",
           client: client);
       // payment.client = client;
 

@@ -76,19 +76,19 @@ class Error implements Response {
   factory Error.fromJson(String source) => Error.fromMap(json.decode(source));
 
   @override
-  bool IsError() {
+  bool isError() {
     // TODO: implement IsError
     return true;
   }
 
   @override
-  bool IsPaymentError() {
+  bool isPaymentError() {
     // TODO: implement IsPaymentError
     return false;
   }
 
   @override
-  bool IsSuccessfull() {
+  bool isSuccessful() {
     // TODO: implement IsSuccessfull
     return false;
   }
@@ -130,19 +130,19 @@ class PaymentError implements Response {
       PaymentError.fromMap(json.decode(source)["details"]);
 
   @override
-  bool IsError() {
+  bool isError() {
     // TODO: implement IsError
     return true;
   }
 
   @override
-  bool IsPaymentError() {
+  bool isPaymentError() {
     // TODO: implement IsPaymentError
     return true;
   }
 
   @override
-  bool IsSuccessfull() {
+  bool isSuccessful() {
     // TODO: implement IsSuccessfull
     return false;
   }
@@ -187,19 +187,19 @@ class Successful implements Response {
       Successful.fromMap(json.decode(source)["ebs_response"]);
 
   @override
-  bool IsError() {
+  bool isError() {
     // TODO: implement IsError
     return false;
   }
 
   @override
-  bool IsPaymentError() {
+  bool isPaymentError() {
     // TODO: implement IsPaymentError
     return false;
   }
 
   @override
-  bool IsSuccessfull() {
+  bool isSuccessful() {
     // TODO: implement IsSuccessfull
     return true;
   }
@@ -218,15 +218,15 @@ class Successful implements Response {
 }
 
 /// [Response] is the base interface for all noebs response messages
-/// [Response.IsSuccessful] and [Response.IsError] can be used
+/// [Response.isSuccessful] and [Response.isError] can be used
 /// to check for successful responses and failure responses accordingly.
 /// [Response.getResponseMessage] is used to get user friendly response messages
 /// [Response.getResponseCode] is for a technical info about the response.
 /// means successful transactions.
 abstract class Response {
-  bool IsSuccessfull();
-  bool IsError();
-  bool IsPaymentError();
+  bool isSuccessful();
+  bool isError();
+  bool isPaymentError();
   String getResponseMessage();
   int getResponseCode();
 }

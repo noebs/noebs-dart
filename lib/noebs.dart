@@ -1,3 +1,5 @@
+///[noebs] dart sdk to access all of noebs payment apis with a simple, straightforward api.
+
 library noebs;
 
 import 'dart:developer';
@@ -11,11 +13,11 @@ import 'package:noebs/types.dart';
 
 /// [Noebs] is the main entry to access all noebs service including charging users [Noebs.specialPayment],
 /// card transfer and cashouts [Noebs.cashout], and balance inquiry [Noebs.balance], through a simple and direct api.
-/// [pan] is the personal account number, or card holder atm's card number, usually it is printed out in the card
+/// [Noebs.pan] is the personal account number, or card holder atm's card number, usually it is printed out in the card
 /// it's usually between 16 or 19 digit.
-/// [pin] or actually ipin is the user's _internet pin_, we process it from the user's entered data and
+/// [Noebs.ipin] or actually ipin is the user's _internet pin_, we process it from the user's entered data and
 /// encrypt it there.
-/// [expDate] is the card expiration date, in **YYmm** format, or two last of year and month with *0* paddings
+/// [Noebs.expDate] is the card expiration date, in **YYmm** format, or two last of year and month with *0* paddings
 /// if not available.
 ///
 /// noebs sdk does all of the heavy lifting, including encryption, retrials, error handling and transactions.
@@ -25,7 +27,7 @@ import 'package:noebs/types.dart';
 /// - [PaymentError]: for payment specific errors (e.g., insufficient funds, etc)
 /// - [Error]: for generic errors such as network errors, etc
 /// You can get the response message and the response code from each one using [Response.getResponseMessage()], and so on for
-/// [Error.getErrorMessage()] and [PaymentError.getPaymentError()].
+/// [Error.getResponseMessage()] and [PaymentError.getResponseMessage()].
 ///
 class Noebs {
   String pan;
