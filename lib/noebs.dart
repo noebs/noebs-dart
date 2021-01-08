@@ -68,8 +68,6 @@ class Noebs {
   /// [specialPayment] is used to perform online purchase.
   /// the callee should check for Response and handle errors accordingly.
   Future<Response> specialPayment(double amount) async {
-    final id = Uuid().v4();
-
     ipinBlock =
         noebsIpin.Ipin(clearIpin: ipin, pubKey: pubKey, uuid: uuid).encrypt();
 
@@ -78,7 +76,7 @@ class Noebs {
         expDate: expDate,
         ipin: ipinBlock,
         pan: pan,
-        uuid: id,
+        uuid: uuid,
         tranAmount: amount,
         serviceProviderId: "12345678",
         currencyCode: "SDG");
@@ -131,6 +129,7 @@ class Noebs {
       if (res.statusCode == 200) {
         return Successful.fromJson(res.body);
       } else if (res.statusCode == 400) {
+        //FIXME
         return Error.fromJson(res.body);
       } else if (res.statusCode == 502) {
         return PaymentError.fromJson(res.body);

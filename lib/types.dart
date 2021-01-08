@@ -106,7 +106,7 @@ class Error implements Response {
   }
 }
 
-/// PaymentError is for payment specific errors, unlike client errors and network errors
+/// [PaymentError] is for payment specific errors, unlike client errors and network errors
 /// Errors such as response error and etc.
 class PaymentError implements Response {
   String message;
