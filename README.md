@@ -1,14 +1,50 @@
 # noebs
 
-A new Flutter package project.
+A simple way to integrate with noebs apis and add payment to your applications.
 
-## Getting Started
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+### How to use noebs dart sdk
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+
+```dart
+import 'package:noebs/noebs.dart';
+import 'package:noebs/types.dart';
+
+final payment = Noebs(
+    apiKey: "1233232",
+    pan: "912341234421234112",
+    ipin: "1234",
+    expDate: "2402",
+    client: client);
+    
+// payment.client = client;
+
+//TODO fix the ipin block shit
+final i = await payment.init();
+
+if (i is Successful) {
+    // successful transaction
+}else if (i is PaymentError) {
+    // process payment errors here
+    print(i.getErrorMessage());
+}
+
+// you can also make a new payment request, through the same api
+
+final payment = Noebs(
+    apiKey: "1233232",
+    pan: "912341234421234112",
+    ipin: "1234",
+    expDate: "2402",
+    client: client);
+
+final i = await payment.init() // initiale the library here
+
+final res = await payment.specialPayment(32.32); 
+
+// check and handle errors here
+
+```
+
+
+For more information go to [our api docs website](https://docs.noebs.dev). 
