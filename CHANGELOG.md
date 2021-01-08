@@ -1,3 +1,7 @@
+## [0.0.5] - 1/8/2021
+
+* small fixes and api docs
+
 ## [0.0.3] - 1/8/2021
 
 * small fixes and api docs
